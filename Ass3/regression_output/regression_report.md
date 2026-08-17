@@ -16,9 +16,9 @@ Predict continuous target `loan_amount_sanctioned` using Linear, Ridge, Lasso, a
 
 | Model                  | Search Method   | Best Parameters                  |   Best CV R² |   Tuning Time (s) |
 |:-----------------------|:----------------|:---------------------------------|-------------:|------------------:|
-| Ridge Regression       | GridSearchCV    | {'alpha': 1}                     |     0.924854 |         1.83065   |
-| Lasso Regression       | GridSearchCV    | {'alpha': 1}                     |     0.92534  |         0.0398121 |
-| Elastic Net Regression | GridSearchCV    | {'alpha': 0.01, 'l1_ratio': 0.5} |     0.924893 |         0.0428183 |
+| Ridge Regression       | GridSearchCV    | {'alpha': 1}                     |     0.924854 |         1.49537   |
+| Lasso Regression       | GridSearchCV    | {'alpha': 1}                     |     0.92534  |         0.0412646 |
+| Elastic Net Regression | GridSearchCV    | {'alpha': 0.01, 'l1_ratio': 0.5} |     0.924893 |         0.0414364 |
 
 ## 4. Table 2: Cross-Validation Performance (K = 5)
 
@@ -33,10 +33,10 @@ Predict continuous target `loan_amount_sanctioned` using Linear, Ridge, Lasso, a
 
 | Model             |     MAE |    MSE |    RMSE |       R² |   Training Time |   Prediction Time |
 |:------------------|--------:|-------:|--------:|---------:|----------------:|------------------:|
-| Linear Regression | 235.394 | 105816 | 325.294 | 0.930899 |     0.00149012  |       0.000388291 |
-| Ridge             | 235.77  | 105848 | 325.342 | 0.930879 |     0.000824833 |       0.00030375  |
-| Lasso             | 236.682 | 106661 | 326.59  | 0.930348 |     0.00127775  |       0.000401459 |
-| Elastic Net       | 236.358 | 105943 | 325.488 | 0.930817 |     0.00270654  |       0.000249333 |
+| Linear Regression | 235.394 | 105816 | 325.294 | 0.930899 |      0.0110461  |       0.000363917 |
+| Ridge             | 235.77  | 105848 | 325.342 | 0.930879 |      0.00081475 |       0.000503667 |
+| Lasso             | 236.682 | 106661 | 326.59  | 0.930348 |      0.00135308 |       0.000321875 |
+| Elastic Net       | 236.358 | 105943 | 325.488 | 0.930817 |      0.002805   |       0.000288291 |
 
 ## 6. Table 4: Coefficient Comparison (Top Features)
 
