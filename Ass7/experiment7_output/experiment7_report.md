@@ -1,0 +1,54 @@
+# Experiment 7: Dimensionality Reduction and Model Evaluation (With and Without PCA)
+
+## Dataset
+- Dataset: Wisconsin Diagnostic Breast Cancer
+- CSV Path: breast_cancer.csv
+- UCI Reference: https://archive.ics.uci.edu/dataset/17/breast+cancer+wisconsin+diagnostic
+- Train Shape: (455, 30)
+- Test Shape: (114, 30)
+- Feature Count: 30
+- Classes: 0 (negative), 1 (positive)
+
+## PCA
+- Components chosen: 10
+- Explained variance achieved: 0.9521
+
+## Full Results Table
+
+| Model               | Setting   | Best Parameters                                                 |   Best CV Accuracy |   Best CV F1 |   Fold 1 |   Fold 2 |   Fold 3 |   Fold 4 |   Fold 5 |   CV Fold Std |   Test Accuracy |   Test Precision |   Test Recall |   Test F1 |   Test ROC-AUC |   Tuning Time (s) |
+|:--------------------|:----------|:----------------------------------------------------------------|-------------------:|-------------:|---------:|---------:|---------:|---------:|---------:|--------------:|----------------:|-----------------:|--------------:|----------:|---------------:|------------------:|
+| SVM                 | No-PCA    | {'C': 10, 'gamma': 'scale', 'kernel': 'rbf'}                    |             0.9758 |       0.9674 |   0.967  |    0.989 |   0.967  |   0.978  |   0.978  |        0.0082 |          0.9737 |           1      |        0.9286 |    0.963  |         0.9927 |             1.71  |
+| SVM                 | With-PCA  | {'C': 10, 'gamma': 'scale', 'kernel': 'rbf'}                    |             0.9714 |       0.9618 |   0.956  |    0.989 |   0.956  |   0.978  |   0.978  |        0.0132 |          0.9649 |           0.975  |        0.9286 |    0.9512 |         0.9904 |             0.043 |
+| Naive Bayes         | No-PCA    | {'var_smoothing': 1e-09}                                        |             0.9385 |       0.917  |   0.956  |    0.978 |   0.9121 |   0.9121 |   0.9341 |        0.0256 |          0.9211 |           0.9231 |        0.8571 |    0.8889 |         0.9891 |             0.028 |
+| Naive Bayes         | With-PCA  | {'var_smoothing': 1e-09}                                        |             0.9121 |       0.8762 |   0.9121 |    0.967 |   0.8901 |   0.8791 |   0.9121 |        0.0303 |          0.8947 |           0.8571 |        0.8571 |    0.8571 |         0.9613 |             0.013 |
+| KNN                 | No-PCA    | {'metric': 'manhattan', 'n_neighbors': 3, 'weights': 'uniform'} |             0.9758 |       0.9667 |   0.967  |    1     |   0.967  |   0.956  |   0.989  |        0.0162 |          0.9649 |           1      |        0.9048 |    0.95   |         0.9735 |             0.238 |
+| KNN                 | With-PCA  | {'metric': 'euclidean', 'n_neighbors': 3, 'weights': 'uniform'} |             0.9714 |       0.9605 |   0.978  |    0.978 |   0.967  |   0.9451 |   0.989  |        0.0149 |          0.9474 |           0.9737 |        0.881  |    0.925  |         0.978  |             0.041 |
+| Logistic Regression | No-PCA    | {'C': 1, 'penalty': 'l2', 'solver': 'lbfgs'}                    |             0.9736 |       0.964  |   0.956  |    0.967 |   1      |   0.978  |   0.967  |        0.0149 |          0.9649 |           0.975  |        0.9286 |    0.9512 |         0.996  |             0.03  |
+| Logistic Regression | With-PCA  | {'C': 1, 'penalty': 'l2', 'solver': 'lbfgs'}                    |             0.9758 |       0.9671 |   0.956  |    0.956 |   1      |   0.978  |   0.989  |        0.0176 |          0.9737 |           1      |        0.9286 |    0.963  |         0.997  |             0.026 |
+| Decision Tree       | No-PCA    | {'max_depth': 7, 'min_samples_split': 2}                        |             0.9231 |       0.8962 |   0.8901 |    0.967 |   0.8901 |   0.9121 |   0.956  |        0.0326 |          0.9386 |           0.9487 |        0.881  |    0.9136 |         0.9225 |             0.078 |
+| Decision Tree       | With-PCA  | {'max_depth': 5, 'min_samples_split': 10}                       |             0.9385 |       0.9178 |   0.9451 |    0.967 |   0.9231 |   0.9231 |   0.9341 |        0.0164 |          0.9386 |           0.9487 |        0.881  |    0.9136 |         0.9148 |             0.029 |
+| Random Forest       | No-PCA    | {'max_depth': 5, 'min_samples_split': 2, 'n_estimators': 100}   |             0.967  |       0.9553 |   0.967  |    1     |   0.9451 |   0.9451 |   0.978  |        0.0209 |          0.9737 |           1      |        0.9286 |    0.963  |         0.995  |             0.506 |
+| Random Forest       | With-PCA  | {'max_depth': 5, 'min_samples_split': 5, 'n_estimators': 100}   |             0.9582 |       0.9416 |   0.967  |    0.989 |   0.9341 |   0.9451 |   0.956  |        0.0189 |          0.9474 |           0.95   |        0.9048 |    0.9268 |         0.9911 |             0.426 |
+| AdaBoost            | No-PCA    | {'learning_rate': 0.5, 'n_estimators': 100}                     |             0.9714 |       0.9607 |   0.956  |    0.967 |   0.967  |   0.978  |   0.989  |        0.0112 |          0.9737 |           1      |        0.9286 |    0.963  |         0.9858 |             0.492 |
+| AdaBoost            | With-PCA  | {'learning_rate': 0.5, 'n_estimators': 100}                     |             0.9714 |       0.9613 |   0.967  |    0.978 |   0.978  |   0.967  |   0.967  |        0.0054 |          0.9474 |           0.9737 |        0.881  |    0.925  |         0.9934 |             0.337 |
+| Gradient Boosting   | No-PCA    | {'learning_rate': 0.1, 'max_depth': 2, 'n_estimators': 200}     |             0.9736 |       0.9645 |   0.967  |    0.978 |   0.967  |   0.967  |   0.989  |        0.0088 |          0.9649 |           1      |        0.9048 |    0.95   |         0.9934 |             0.76  |
+| Gradient Boosting   | With-PCA  | {'learning_rate': 0.1, 'max_depth': 2, 'n_estimators': 200}     |             0.9582 |       0.9428 |   0.956  |    0.967 |   0.9451 |   0.956  |   0.967  |        0.0082 |          0.9561 |           0.9744 |        0.9048 |    0.9383 |         0.9904 |             0.384 |
+| XGBoost             | No-PCA    | {'learning_rate': 0.05, 'max_depth': 2, 'n_estimators': 200}    |             0.9736 |       0.9643 |   0.967  |    0.978 |   0.967  |   0.967  |   0.989  |        0.0088 |          0.9737 |           1      |        0.9286 |    0.963  |         0.9944 |             0.41  |
+| XGBoost             | With-PCA  | {'learning_rate': 0.1, 'max_depth': 3, 'n_estimators': 200}     |             0.9736 |       0.9644 |   0.989  |    0.978 |   0.967  |   0.967  |   0.967  |        0.0088 |          0.9737 |           0.9756 |        0.9524 |    0.9639 |         0.9927 |             0.34  |
+| Stacking            | No-PCA    | {'final_estimator__C': 10}                                      |             0.978  |       0.9702 |   0.956  |    0.989 |   0.978  |   0.978  |   0.989  |        0.012  |          0.9737 |           1      |        0.9286 |    0.963  |         0.995  |             1.935 |
+| Stacking            | With-PCA  | {'final_estimator__C': 10}                                      |             0.9714 |       0.9613 |   0.956  |    0.978 |   0.967  |   0.978  |   0.978  |        0.0088 |          0.9825 |           1      |        0.9524 |    0.9756 |         0.9924 |             1.304 |
+
+## PCA Impact Summary
+
+| Model               |   Test Accuracy (No-PCA) |   Test Accuracy (With-PCA) |   Accuracy Delta |   Test F1 (No-PCA) |   Test F1 (With-PCA) |   F1 Delta |   CV Std Delta (PCA - NoPCA) |
+|:--------------------|-------------------------:|---------------------------:|-----------------:|-------------------:|---------------------:|-----------:|-----------------------------:|
+| Logistic Regression |                   0.9649 |                     0.9737 |           0.0088 |             0.9512 |               0.963  |     0.0118 |                       0.0027 |
+| Stacking            |                   0.9737 |                     0.9825 |           0.0088 |             0.963  |               0.9756 |     0.0126 |                      -0.0032 |
+| Decision Tree       |                   0.9386 |                     0.9386 |           0      |             0.9136 |               0.9136 |     0      |                      -0.0162 |
+| XGBoost             |                   0.9737 |                     0.9737 |           0      |             0.963  |               0.9639 |     0.0009 |                       0      |
+| SVM                 |                   0.9737 |                     0.9649 |          -0.0088 |             0.963  |               0.9512 |    -0.0118 |                       0.005  |
+| Gradient Boosting   |                   0.9649 |                     0.9561 |          -0.0088 |             0.95   |               0.9383 |    -0.0117 |                      -0.0006 |
+| KNN                 |                   0.9649 |                     0.9474 |          -0.0175 |             0.95   |               0.925  |    -0.025  |                      -0.0013 |
+| Random Forest       |                   0.9737 |                     0.9474 |          -0.0263 |             0.963  |               0.9268 |    -0.0362 |                      -0.002  |
+| AdaBoost            |                   0.9737 |                     0.9474 |          -0.0263 |             0.963  |               0.925  |    -0.038  |                      -0.0058 |
+| Naive Bayes         |                   0.9211 |                     0.8947 |          -0.0264 |             0.8889 |               0.8571 |    -0.0318 |                       0.0047 |

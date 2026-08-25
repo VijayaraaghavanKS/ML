@@ -1,0 +1,2 @@
+Setting,Chosen Components / Variance Target,Explained Variance (%),Justification
+With-PCA,10 components (target 95%),95.21,"Smallest number of components whose cumulative explained variance reaches the 95% target, chosen from the scree plot to compress 30 original features while retaining most information."
