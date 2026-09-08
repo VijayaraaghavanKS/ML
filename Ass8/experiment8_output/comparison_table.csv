@@ -1,0 +1,4 @@
+Algorithm,Silhouette,Davies-Bouldin,Calinski-Harabasz,ARI,NMI
+K-Means (k=2),0.4375,0.9611,9560.0238,0.3296,0.5455
+"DBSCAN (eps=16.0, min_samples=15)",0.3613,0.8423,146.5555,0.0095,0.0476
+"HAC (ward, subset)",0.1698,1.8134,449.5891,0.3487,0.5182

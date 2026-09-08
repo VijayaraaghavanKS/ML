@@ -1,0 +1,5 @@
+Linkage,Silhouette,Davies-Bouldin,ARI,NMI
+single,0.4776,0.3178,0.0002,0.0069
+complete,0.4022,1.0718,0.3277,0.5321
+average,0.3872,0.7267,0.0032,0.0314
+ward,0.1698,1.8134,0.3487,0.5182

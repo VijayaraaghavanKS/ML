@@ -1,0 +1,5 @@
+Linkage,Largest Cluster %,Number of Non-Trivial Clusters (>=2%)
+single,99.7,1
+complete,54.3,3
+average,96.9,2
+ward,42.2,5
