@@ -1,0 +1,9 @@
+hidden_layer_sizes,activation,solver,learning_rate_init,batch_size,Val Accuracy,Train Time (s),Iterations
+"(256, 128)",relu,adam,0.001,64,0.4469,8.17,300
+"(128,)",tanh,adam,0.001,64,0.3059,4.03,300
+"(128, 64)",relu,sgd,0.01,64,0.3059,2.65,284
+"(128, 64)",relu,adam,0.001,64,0.2894,4.51,300
+"(128, 64)",relu,adam,0.001,128,0.13,2.7,300
+"(128, 64)",relu,adam,0.01,64,0.0165,0.83,56
+"(128,)",relu,adam,0.001,64,0.0147,2.04,148
+"(128, 64, 32)",relu,adam,0.001,64,0.0147,2.86,181
